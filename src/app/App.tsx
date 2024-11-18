@@ -8,6 +8,7 @@ function App() {
   const initialTheme = url.searchParams.get("theme");
 
   const [theme, setTheme] = useState(initialTheme || null);
+  console.log(theme);
   const [selectedText, setSelectedText] = useState<Text | null>(null);
 
   useEffect(() => {
@@ -32,7 +33,10 @@ function App() {
   }, []);
 
   return (
-    <div data-theme={theme} className="my-4 text-slate-800 text-sm">
+    <div
+      data-theme={theme}
+      className={`my-4 text-slate-800 text-sm ${theme} dark:text-slate-200`}
+    >
       <LineLength selectedText={selectedText} />
     </div>
   );

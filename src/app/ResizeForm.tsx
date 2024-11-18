@@ -41,18 +41,19 @@ const ResizeForm: React.FC<Props> = ({ textData }) => {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col">
       {" "}
-      <label className="mb-4 text-slate-600">
+      <label className="mb-4 text-slate-600 dark:text-slate-400">
         Average number of characters per line:
         <input
-          className="mt-2 flex px-4 py-2 border border-slate-300 rounded-lg"
+          className="mt-2 flex px-4 py-2 border  border-slate-300 dark:border-slate-700 rounded-lg"
           type="number"
           name="charPerLine"
           placeholder="E.g 45"
         ></input>
       </label>
       <button
-        className="bg-blue-500 text-slate-100 rounded-lg py-2 px-4  bold w-[120px]"
+        className="bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-300 dark:bg-blue-400 text-slate-100 dark:text-slate-900 rounded-lg py-2 px-4  bold w-[120px] disabled:bg-gray-400 disabled:text-gray-50 disabled:dark:text-gray-900 disabled:pointer-events-none "
         type="submit"
+        disabled={textData === null}
       >
         Resize
       </button>

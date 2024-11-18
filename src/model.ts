@@ -26,7 +26,7 @@ export interface ITextData {
 }
 
 // Todo: Type theme possibility
-export type ThemePluginEvent = PluginMessageEvent<string>;
+export type ThemePluginEvent = PluginMessageEvent<"light" | "dark">;
 
 export type SelectionPluginEvent = PluginMessageEvent<Text | null>;
 

@@ -39,13 +39,14 @@ const LineLength: React.FC<Props> = ({ selectedText }) => {
         {textData ? (
           <>
             Current average character per line:{" "}
-            <span className="text-blue-600">
+            <span className="text-blue-600 dark:text-blue-400">
               {textData ? `${textData.averageCharPerLine}` : "0"}ch/line
             </span>
           </>
         ) : (
           <span className="text-[11px] italic">
-            Select a single text layer to get its average line length
+            Select a single text layer to get its average line length with
+            auto-height proprety
           </span>
         )}
       </p>
