@@ -1,7 +1,7 @@
 {
-  "name": "React example plugin",
-  "description": "Example plugin with react",
+  "name": "Line Length Adjuster",
+  "description": "Adjusts characters per line",
   "code": "/plugin.js",
-  "icon": "/icon.png",
+  "icon": "/Line Length_Adjuster_icon.svg",
   "permissions": ["page:read", "content:write", "file:read", "selection:read"]
 }
