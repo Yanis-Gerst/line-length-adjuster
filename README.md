@@ -1,4 +1,4 @@
-# Penpot Plugin: Line Adjuster Adjuster
+# Penpot Plugin: Line Length Adjuster
 
 ## Optimize the readability of your text in Penpot effortlessly
 
