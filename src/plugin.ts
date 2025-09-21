@@ -14,7 +14,11 @@ penpot.on("themechange", (theme) => {
   });
 });
 
+let shapeChangeCallback: symbol;
 penpot.on("selectionchange", () => {
+  if (shapeChangeCallback) {
+    penpot.off(shapeChangeCallback);
+  }
   const currentSelection = penpot.selection[0];
   let content: Shape | null = currentSelection;
   if (
@@ -23,7 +27,21 @@ penpot.on("selectionchange", () => {
     currentSelection.type !== "text"
   ) {
     content = null;
+  } else {
+    shapeChangeCallback = penpot.on(
+      "shapechange",
+      (shape) => {
+        if (shape.type !== "text") return;
+
+        sendMessage<SelectionPluginEvent>({
+          type: "SELECTION_UPDATE",
+          content: shape as Text | null,
+        });
+      },
+      { shapeId: currentSelection.id }
+    );
   }
+
   sendMessage<SelectionPluginEvent>({
     type: "SELECTION_UPDATE",
     content: content as Text | null,
@@ -37,6 +55,7 @@ const sendMessage = <T>(message: T) => {
 penpot.ui.onMessage<ResizeTextPluginEvent>((message) => {
   if (message.type === "RESIZE_TEXT") {
     const text = penpot.selection[0];
+
     text.resize(message.content.newWidth, text.height);
   }
 });

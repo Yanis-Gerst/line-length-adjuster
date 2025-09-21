@@ -2,6 +2,7 @@ import { Text } from "@penpot/plugin-types";
 import React from "react";
 import ResizeForm from "./ResizeForm";
 import { ITextData } from "../model";
+import autoHeightImage from "../assets/auto-height.webp";
 
 interface Props {
   selectedText: Text | null;
@@ -36,12 +37,24 @@ const LineLength: React.FC<Props> = ({ selectedText }) => {
     <div>
       {" "}
       <p className="font-bold mb-2">
-        {textData ? (
+        {selectedText ? (
           <>
-            Current average character per line:{" "}
-            <span className="text-blue-600 dark:text-blue-400">
-              {textData ? `${textData.averageCharPerLine}` : "0"}ch/line
-            </span>
+            {selectedText.growType !== "auto-height" ? (
+              <>
+                Need to enable auto-height property
+                <img
+                  src={autoHeightImage}
+                  alt="Image to show where to enable auto-height property"
+                />
+              </>
+            ) : (
+              <>
+                Current average character per line:{" "}
+                <span className="text-blue-600 dark:text-blue-400">
+                  {textData ? `${textData.averageCharPerLine}` : "0"}ch/line
+                </span>
+              </>
+            )}
           </>
         ) : (
           <span className="text-[11px] italic">
@@ -50,7 +63,9 @@ const LineLength: React.FC<Props> = ({ selectedText }) => {
           </span>
         )}
       </p>
-      <ResizeForm textData={textData} />
+      <ResizeForm
+        textData={selectedText?.growType === "auto-height" ? textData : null}
+      />
     </div>
   );
 };

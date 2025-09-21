@@ -8,13 +8,11 @@ function App() {
   const initialTheme = url.searchParams.get("theme");
 
   const [theme, setTheme] = useState(initialTheme || null);
-  console.log(theme);
   const [selectedText, setSelectedText] = useState<Text | null>(null);
 
   useEffect(() => {
     const handleMessage = (event: { data: PluginMessageEvent<unknown> }) => {
       const { type, content } = event.data;
-
       switch (type) {
         case "THEME_CHANGE":
           setTheme(content as string);
@@ -38,6 +36,7 @@ function App() {
       className={`my-4 text-slate-800 text-sm ${theme} dark:text-slate-200`}
     >
       <LineLength selectedText={selectedText} />
+      <div id="line-length-adjuster_text-measurement"></div>
     </div>
   );
 }
