@@ -14,7 +14,6 @@ const calculateNewWidth = (
 };
 
 const ResizeForm: React.FC<Props> = ({ textData }) => {
-  const [resized, setResized] = useState<boolean>(false);
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (!textData) return;
@@ -32,7 +31,6 @@ const ResizeForm: React.FC<Props> = ({ textData }) => {
     };
 
     parent.postMessage(messageContent, "*");
-    setResized(true);
   };
   if (!textData) return null;
   return (
@@ -56,7 +54,6 @@ const ResizeForm: React.FC<Props> = ({ textData }) => {
           Resize
         </button>
       </form>
-      {resized && <p>Resized to {textData?.lineNumber}px</p>}
     </>
   );
 };
