@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ITextData, ResizeTextPluginEvent } from "../model";
 
 interface Props {
